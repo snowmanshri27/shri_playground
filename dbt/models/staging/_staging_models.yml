@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: stg_orders_users
+    description: "Staging model copy of orders-users"
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: user_id
+        tests:
+          - not_null
+      - name: eval_set
+        tests:
+          - not_null
