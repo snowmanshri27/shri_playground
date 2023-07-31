@@ -1,0 +1,76 @@
+version: 2
+
+models:
+  - name: fct_user_order_products
+    description: "Fact table at a Order-Product-User granularity"
+    contract:
+        enforced: true
+    columns:
+      - name: user_order_product_id
+        data_type: int
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+      - name: user_id
+        data_type: int
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+      - name: order_id
+        data_type: int
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+      - name: product_id
+        data_type: int
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+      - name: order_number
+        data_type: int
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+      - name: order_dow
+        data_type: int
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+      - name: order_hour_of_day
+        data_type: int
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+      - name: add_to_cart_order
+        data_type: int
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+      - name: reordered
+        data_type: int
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+      - name: days_since_prior_order
+        data_type: int
+      - name: days_since_prior_order_cum
+        data_type: int
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+      - name: order_date
+        data_type: date
+        constraints:
+          - type: not_null
+        tests:
+          - not_null

@@ -1,0 +1,14 @@
+semantic_models:
+  - name: product # A semantic model with the name Order
+    model: ref('dim_products') # References the dbt model named `products`
+    description: "Dim table at the product level. This table contains one row per a unique product at an aisle in a department."
+
+# --- entities ---
+    entities: 
+      - name: product_id
+        type: primary
+
+# --- dimensions ---
+    dimensions:
+      - name: product_name
+        type: categorical

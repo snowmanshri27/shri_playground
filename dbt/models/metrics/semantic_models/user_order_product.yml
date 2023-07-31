@@ -1,0 +1,35 @@
+semantic_models:
+  - name: user_order_product # A semantic model to represent user order product fact
+    model: ref('fct_user_order_products') # References the dbt model named `fct_order_products`
+    description: "Daily fact table at the user_order-product level. This table contains one row per the product that was ordered by the user and includes the order date and hour."
+    defaults:
+      agg_time_dimension: order_date
+
+# --- entities ---
+    entities: 
+      - name: user_order_product
+        type: primary
+        expr: user_order_product_id
+      - name: user
+        type: foreign
+        expr: user_id
+      - name: order
+        type: foreign
+        expr: order_id
+      - name: product
+        type: foreign
+        expr: product_id
+
+# --- measures --- 
+    measures: 
+      - name: order_count
+        expr: order_id
+        agg: count_distinct
+        agg_time_dimension: order_date
+
+# --- dimensions ---
+    dimensions:
+      - name: order_date
+        type: time
+        type_params:
+          time_granularity: day

@@ -1,0 +1,6 @@
+metrics:
+  - name: total_order_count
+    type: simple
+    type_params:
+      measure: order_count
+    label: Overall Order Count

@@ -26,6 +26,9 @@ clean-targets:         # directories to be removed by `dbt clean`
     - "dbt_modules"
     - "dbt_packages"
 
+vars:
+    start_date: '01-02-2022'
+    end_date: '02-12-2023'       
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
@@ -35,14 +38,15 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 models:
     instacart_dbt_models:
-        vars:
-            start_date: '01-01-2019'
-            end_date: '02-01-2019'       
         materialized: table
         daily:
             materialized: incremental
+            on_schema_change: "append_new_columns"
             tags: daily
-        initialisation:
+        staging:
             tags: init-once
-        core:
-            tags: snapshot
+        dimensions:
+            tags: dimensions
+        metrics:
+            materialized: view
+            tags: metrics

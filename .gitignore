@@ -1,0 +1,6 @@
+logs
+dbt_packages
+settings.json
+target
+target_bkup
+venv
