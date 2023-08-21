@@ -19,7 +19,7 @@ with
             cast(a.days_since_prior_order AS INT) days_since_prior_order,	
             cast(a.days_since_prior_order_cum AS INT) days_since_prior_order_cum,
             date(a.order_date) as order_date
-        from daily_orders a
+        from orders a
         join order_products b
         on a.order_id = b.order_id
         order by a.user_id, a.order_id, b.product_id
