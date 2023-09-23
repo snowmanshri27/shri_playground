@@ -1,0 +1,44 @@
+workspace:
+  name: instacart_sdf
+  edition: "1.1"
+  dialect: sdf
+  description: >
+    Creates a simple workspace, with a 'src/main.sql' file.
+
+    Type 'sdf build' on the commandline to print 'hello'
+
+    Type 'sdf describe' to view schema information
+
+    Type 'sdf auth login' and 'sdf deploy' to deploy the workspace to the sdf console
+  includes:
+    - path: src
+  code-checks:
+    - name: Code Check
+      description: >
+        Ensure that there is no UII.id
+      assert: not-exists
+      path: checks/code_check.sql
+---
+classifier:
+  name: UII
+  labels:
+    - name: id
+---
+classifier:
+  name: int
+  labels:
+    - name: int
+---
+table:
+  name: orders
+  columns:
+    - name: user_id
+      classifiers:
+        - UII.id
+---
+table:
+  name: stg_orders
+  columns:
+    - name: days_since_prior_order_cum
+      reclassify:
+        - from: UII.id
